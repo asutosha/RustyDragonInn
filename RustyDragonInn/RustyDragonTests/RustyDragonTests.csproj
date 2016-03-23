@@ -58,7 +58,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CheeseTest.cs" />
+    <Compile Include="CheeseTests.cs" />
+    <Compile Include="PrinterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderTests.cs" />
   </ItemGroup>

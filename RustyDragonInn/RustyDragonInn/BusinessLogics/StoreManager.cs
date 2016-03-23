@@ -15,7 +15,7 @@ namespace RustyDragonInn.BusinessLogics
     /// </summary>
     public class StoreManager : IStoreManager
     {
-        public IList<ICheese> Cheeses { get; set; }
+        public List<ICheese> Cheeses { get; set; }
 
         private readonly IPriceCalculator _priceCalculator;
         private readonly IPrinter _printer;

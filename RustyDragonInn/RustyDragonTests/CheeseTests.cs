@@ -8,7 +8,7 @@ using RustyDragonBasesAndInterfaces.Validators;
 namespace RustyDragonTests
 {
     [TestClass]
-    public class CheeseTest
+    public class CheeseTests
     {
         private Cheese _cheese;
 
