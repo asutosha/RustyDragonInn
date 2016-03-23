@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonInn.Models;
 using RustyDragonInn.Printer;
+using System;
+using System.Collections.Generic;
 
 namespace RustyDragonTests
 {
@@ -15,24 +14,25 @@ namespace RustyDragonTests
     public class PrinterTests
     {
         private Printer _printer;
+
         [TestInitialize]
         public void PrinterTestsSetup()
         {
-          _printer=new Printer();
+            _printer = new Printer();
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Printer_NullCheeseList_ThrowsException()
         {
-            _printer.Print(null,DateTime.Now);
+            _printer.Print(null, DateTime.Now);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Printer_EmptyCheeseList_ThrowsException()
         {
-            var cheeses=new List<ICheese>();
+            var cheeses = new List<ICheese>();
             _printer.Print(cheeses, DateTime.Now);
         }
 
@@ -71,8 +71,8 @@ namespace RustyDragonTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Printer_PrintItems_NullCheeseLists_ThrowsException()
         {
-           var pObjectPrivateObject=new PrivateObject(_printer);
-            pObjectPrivateObject.Invoke("PrintItems", new object[] {null});
+            var pObjectPrivateObject = new PrivateObject(_printer);
+            pObjectPrivateObject.Invoke("PrintItems", new object[] { null });
         }
 
         [TestMethod]

@@ -3,7 +3,6 @@ using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonBasesAndInterfaces.Printer;
 using System;
 using System.Collections.Generic;
-using RustyDragonInn.Models;
 
 namespace RustyDragonInn.Printer
 {

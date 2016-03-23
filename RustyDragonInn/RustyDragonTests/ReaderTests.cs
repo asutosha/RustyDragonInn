@@ -1,12 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RustyDragonInn.Reader;
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Schema;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RustyDragonInn.Reader;
 
 namespace RustyDragonTests
 {
@@ -16,20 +13,20 @@ namespace RustyDragonTests
     [TestClass]
     public class ReaderTests
     {
-        private const string SampleXmlFile = "<?xml version='1.0' encoding='utf-8' ?>"+
-                                                "<Items>"+
-                                                  "<Item>"+
-                                                    "<Name>Cheddar</Name>"+
-                                                    "<Type>Standard</Type>"+
-                                                    "<Price>3.87</Price>"+
-                                                    "<DaysToSell>8</DaysToSell>"+
-                                                    "<BestBeforeDate>2016-02-15</BestBeforeDate>"+
-                                                  "</Item>"+
+        private const string SampleXmlFile = "<?xml version='1.0' encoding='utf-8' ?>" +
+                                                "<Items>" +
+                                                  "<Item>" +
+                                                    "<Name>Cheddar</Name>" +
+                                                    "<Type>Standard</Type>" +
+                                                    "<Price>3.87</Price>" +
+                                                    "<DaysToSell>8</DaysToSell>" +
+                                                    "<BestBeforeDate>2016-02-15</BestBeforeDate>" +
+                                                  "</Item>" +
                                                 "</Items>";
 
         private const string WrongXmlFile = "wrong";
 
-        private static readonly string SampleXmlFileName = Environment.CurrentDirectory+"\\SampleInput.xml";
+        private static readonly string SampleXmlFileName = Environment.CurrentDirectory + "\\SampleInput.xml";
         private static readonly string SampleWrongXmlFileName = Environment.CurrentDirectory + "\\SampleWrongXMLInput.xml";
 
         private const string WrongPath = "c:\\xyzRusty.XML";
@@ -46,7 +43,6 @@ namespace RustyDragonTests
             sampleWrongFileWriter.Write(WrongXmlFile);
             sampleWrongFileWriter.Flush();
             sampleWrongFileWriter.Close();
-            sampleWrongFileWriter.Dispose();
 
             _reader = new Reader();
         }
@@ -58,7 +54,6 @@ namespace RustyDragonTests
             _reader.Load(WrongPath);
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(XmlException))]
         public void Reader_FailsToLoad_NoRoot_ThrowException()
@@ -69,9 +64,9 @@ namespace RustyDragonTests
         [TestMethod]
         public void Reader_Loads_Returns_CheeseList()
         {
-           var cheeseList= _reader.Load(SampleXmlFileName);
+            var cheeseList = _reader.Load(SampleXmlFileName);
             Assert.IsNotNull(cheeseList);
-            Assert.AreEqual(1,cheeseList.Count);
+            Assert.AreEqual(1, cheeseList.Count);
         }
 
         [TestCleanup]

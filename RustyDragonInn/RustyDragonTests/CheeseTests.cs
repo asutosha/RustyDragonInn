@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RustyDragonInn.Models;
-using System;
 using NSubstitute;
 using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonBasesAndInterfaces.Validators;
+using RustyDragonInn.Models;
+using System;
 
 namespace RustyDragonTests
 {
@@ -55,21 +55,20 @@ namespace RustyDragonTests
         public void Test_Cheese_CopyTo_Returns_Coppied_Cheese()
         {
             _cheese.Price = 10;
-            _cheese.BestBeforeDate= DateTime.Parse("2016-03-19");
+            _cheese.BestBeforeDate = DateTime.Parse("2016-03-19");
             _cheese.DaysToSell = 5;
             _cheese.Name = "Good Cheese";
             _cheese.Type = CheeseTypes.Aged;
 
-            var newCheese=new Cheese();
+            var newCheese = new Cheese();
             _cheese.CopyTo(newCheese);
             Assert.IsNotNull(newCheese);
 
-            Assert.AreEqual(_cheese.Price,newCheese.Price);
+            Assert.AreEqual(_cheese.Price, newCheese.Price);
             Assert.AreEqual(_cheese.BestBeforeDate, newCheese.BestBeforeDate);
             Assert.AreEqual(_cheese.DaysToSell, newCheese.DaysToSell);
             Assert.AreEqual(_cheese.Name, newCheese.Name);
             Assert.AreEqual(_cheese.Type, newCheese.Type);
-
         }
 
         [TestMethod]
@@ -89,7 +88,6 @@ namespace RustyDragonTests
             Assert.AreEqual(_cheese.DaysToSell, newCheese.DaysToSell);
             Assert.AreEqual(_cheese.Name, newCheese.Name);
             Assert.AreEqual(_cheese.Type, newCheese.Type);
-
         }
 
         [TestMethod]
@@ -107,7 +105,7 @@ namespace RustyDragonTests
             var validationResult = _cheese.Validate(cheeseValidator);
 
             Assert.IsTrue(validationResult.Item1);
-            Assert.AreEqual(ValidationErrorType.None, (ValidationErrorType) validationResult.Item2);
+            Assert.AreEqual(ValidationErrorType.None, (ValidationErrorType)validationResult.Item2);
         }
 
         [TestCleanup]

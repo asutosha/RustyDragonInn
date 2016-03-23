@@ -1,39 +1,35 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RustyDragonBasesAndInterfaces.Validators;
 using RustyDragonInn.Models;
 using RustyDragonInn.Validators;
 
 namespace RustyDragonTests
 {
-	/// <summary>
-	/// Summary description for CheeseValidator
-	/// </summary>
-	[TestClass]
-	public class CheeseValidatorTests
-	{
-	    private CheeseValidator _cheeseValidator;
+    /// <summary>
+    /// Summary description for CheeseValidator
+    /// </summary>
+    [TestClass]
+    public class CheeseValidatorTests
+    {
+        private CheeseValidator _cheeseValidator;
 
         [TestInitialize]
-	    public void ValidatorSetup()
-	    {
-	        _cheeseValidator=new CheeseValidator();
-	    }
-		
+        public void ValidatorSetup()
+        {
+            _cheeseValidator = new CheeseValidator();
+        }
 
-		[TestMethod]
-		public void ValidatorTests_DaysToSellZero_Returns_False_DaysToSellPassed()
-		{
-		    var cheese = new Cheese {DaysToSell = 0};
+        [TestMethod]
+        public void ValidatorTests_DaysToSellZero_Returns_False_DaysToSellPassed()
+        {
+            var cheese = new Cheese { DaysToSell = 0 };
 
-		    const ValidationErrorType expectedValidationErrorType = ValidationErrorType.DaysToSellPassed;
-		    const bool expectedValidationResult = false;
+            const ValidationErrorType expectedValidationErrorType = ValidationErrorType.DaysToSellPassed;
+            const bool expectedValidationResult = false;
 
-		   var validationResult= _cheeseValidator.Validate(cheese);
+            var validationResult = _cheeseValidator.Validate(cheese);
 
-			Assert.AreEqual(expectedValidationResult, validationResult.Item1);
+            Assert.AreEqual(expectedValidationResult, validationResult.Item1);
             Assert.AreEqual(expectedValidationErrorType, validationResult.Item2);
         }
 
@@ -68,7 +64,7 @@ namespace RustyDragonTests
         [TestMethod]
         public void ValidatorTests_PriceLessThan20_DaysToSellBiggerThanZero_Returns_True_None()
         {
-            var cheese = new Cheese { Price = 18,DaysToSell = 5};
+            var cheese = new Cheese { Price = 18, DaysToSell = 5 };
 
             const ValidationErrorType expectedValidationErrorType = ValidationErrorType.None;
             const bool expectedValidationResult = true;
@@ -80,9 +76,9 @@ namespace RustyDragonTests
         }
 
         [TestCleanup]
-	    public void TestCleanup()
-	    {
-	        _cheeseValidator = null;
-	    }
-	}
+        public void TestCleanup()
+        {
+            _cheeseValidator = null;
+        }
+    }
 }
