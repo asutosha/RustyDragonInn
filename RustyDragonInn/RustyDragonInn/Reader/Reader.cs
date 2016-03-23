@@ -24,10 +24,6 @@ namespace RustyDragonInn.Reader
             }
 
             var xmlDoc = XDocument.Load(filePath);
-            if (xmlDoc.Root == null)
-            {
-                throw new XmlSchemaException("The xml does not have any root");
-            }
 
             var cheeseList = (from item in xmlDoc.Root.Elements("Item")
                               let itemName = item.Element("Name")
