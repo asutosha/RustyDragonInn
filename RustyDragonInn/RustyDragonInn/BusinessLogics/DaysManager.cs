@@ -1,21 +1,22 @@
-﻿using System;
+﻿using RustyDragonBasesAndInterfaces.BusinessLogics;
+using System;
 using System.Timers;
-using RustyDragonBasesAndInterfaces.BusinessLogics;
 
 namespace RustyDragonInn.BusinessLogics
 {
     /// <summary>
-    /// Days Manager takes the control of calculating next day and notifying 
+    /// Days Manager takes the control of calculating next day and notifying
     /// the subscriber(s) of OnNextDay event that a new day has come
     /// </summary>
-    public class DaysManager : IDaysManager
+    public class DaysManager : IDaysManager, IDisposable
     {
         public event DaysManagerEventHandler OnNextDay;
-        private readonly Timer _internalTimer ;
+
+        private readonly Timer _internalTimer;
         private int _dayCounter = 1;
         public DateTime Now { get; private set; }
 
-        public DaysManager(int interval,DateTime now)
+        public DaysManager(int interval, DateTime now)
         {
             Now = now;
 
@@ -36,13 +37,37 @@ namespace RustyDragonInn.BusinessLogics
             _dayCounter = 1;
             _internalTimer.Stop();
         }
+
         private void _internalTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _dayCounter++;
-            Now =Now.AddDays(+1);
-            var eventArgs=new DaysManagerEventArgs(Now, _dayCounter);
+            Now = Now.AddDays(+1);
+            var eventArgs = new DaysManagerEventArgs(Now, _dayCounter);
             OnNextDay?.Invoke(this, eventArgs);
         }
-    }
 
+        #region IDisposable Support
+
+        private bool _disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    _internalTimer.Dispose();
+                }
+
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        #endregion IDisposable Support
+    }
 }

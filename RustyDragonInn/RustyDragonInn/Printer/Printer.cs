@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using RustyDragonBasesAndInterfaces.Helper;
+﻿using RustyDragonBasesAndInterfaces.Helper;
 using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonBasesAndInterfaces.Printer;
+using System;
+using System.Collections.Generic;
 
 namespace RustyDragonInn.Printer
 {
@@ -22,21 +21,18 @@ namespace RustyDragonInn.Printer
 
         public void Print(IList<ICheese> cheeses, DateTime now)
         {
-            _header = new string[] {"RustyDragonInn", "(Grocery Store)", "Today", now.ToShortDateString()};
+            _header = new string[] { "RustyDragonInn", "(Grocery Store)", "Today", now.ToShortDateString() };
             PrintItems(cheeses);
-           
         }
 
         public void PrintLine(string message)
         {
-            Console.WriteLine(message+Environment.NewLine); 
+            Console.WriteLine(message + Environment.NewLine);
         }
 
         private void PrintItems(IList<ICheese> cheeseList)
         {
-             Shell.From(cheeseList).AddHeader(_header).Write();
+            Shell.From(cheeseList).AddHeader(_header).Write();
         }
-
-
     }
 }

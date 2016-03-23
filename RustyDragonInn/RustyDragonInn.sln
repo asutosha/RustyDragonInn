@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustyDragonBasesAndInterfac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustyDragonInn.Main", "RustyDragonInn.Main\RustyDragonInn.Main.csproj", "{CA87CEBE-0D6E-46ED-83A6-0F230422F420}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustyDragonTests", "RustyDragonTests\RustyDragonTests.csproj", "{EEAC0442-D692-41CE-9725-BDB2094F3023}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CA87CEBE-0D6E-46ED-83A6-0F230422F420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA87CEBE-0D6E-46ED-83A6-0F230422F420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA87CEBE-0D6E-46ED-83A6-0F230422F420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAC0442-D692-41CE-9725-BDB2094F3023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAC0442-D692-41CE-9725-BDB2094F3023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAC0442-D692-41CE-9725-BDB2094F3023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAC0442-D692-41CE-9725-BDB2094F3023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

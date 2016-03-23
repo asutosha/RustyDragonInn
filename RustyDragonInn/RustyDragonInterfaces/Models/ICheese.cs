@@ -1,5 +1,5 @@
-﻿using System;
-using RustyDragonBasesAndInterfaces.Validators;
+﻿using RustyDragonBasesAndInterfaces.Validators;
+using System;
 
 namespace RustyDragonBasesAndInterfaces.Models
 {
@@ -10,7 +10,9 @@ namespace RustyDragonBasesAndInterfaces.Models
         int? DaysToSell { get; set; }
         double Price { get; set; }
         CheeseTypes Type { get; set; }
+
         Tuple<bool, ValidationErrorType> Validate(ICheeseValidator cheeseValidator);
+
         void CopyTo(ICheese cheese);
     }
 
@@ -22,5 +24,4 @@ namespace RustyDragonBasesAndInterfaces.Models
         Aged,
         Standard
     }
-    
 }

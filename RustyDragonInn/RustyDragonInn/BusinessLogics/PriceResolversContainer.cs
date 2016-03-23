@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using RustyDragonBasesAndInterfaces.BusinessLogics;
+﻿using RustyDragonBasesAndInterfaces.BusinessLogics;
 using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonBasesAndInterfaces.Validators;
+using System;
+using System.Collections.Generic;
 
 namespace RustyDragonInn.BusinessLogics
 {
     /// <summary>
     /// This class encapsulates the business logics required for resolving the price issues.
-    /// it stores those logics in the a dictionary (error types are keys) 
+    /// it stores those logics in the a dictionary (error types are keys)
     /// and passes the appropriate logics using the type of error which was passed before.
     /// </summary>
     public class PriceResolversContainer : IPriceResolversContainer
@@ -23,7 +23,7 @@ namespace RustyDragonInn.BusinessLogics
 
         public Action<ICheese> GetRule(ValidationErrorType errorType)
         {
-            return _rules[errorType]; 
+            return _rules[errorType];
         }
 
         private void RegisterRules()
@@ -32,7 +32,6 @@ namespace RustyDragonInn.BusinessLogics
             _rules.Add(ValidationErrorType.ExceededMaximumPrice, (ICheese cheese) => cheese.Price = 20.00);
             _rules.Add(ValidationErrorType.None, (ICheese cheese) => { });
             _rules.Add(ValidationErrorType.DaysToSellPassed, (ICheese cheese) => { });
-
         }
     }
 }

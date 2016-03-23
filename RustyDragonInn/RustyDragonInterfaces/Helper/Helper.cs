@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using RustyDragonBasesAndInterfaces.Exceptions;
+﻿using RustyDragonBasesAndInterfaces.Exceptions;
 using RustyDragonBasesAndInterfaces.Models;
+using System;
+using System.IO;
 
 namespace RustyDragonBasesAndInterfaces.Helper
 {
@@ -22,7 +22,6 @@ namespace RustyDragonBasesAndInterfaces.Helper
             }
             try
             {
-
                 var dateString = Path.GetFileNameWithoutExtension(filePath).Split(deliminator)[index];
                 var day = Convert.ToInt32(dateString.Substring(0, 2));
                 var month = Convert.ToInt32(dateString.Substring(2, 2));

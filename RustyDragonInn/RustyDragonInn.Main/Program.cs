@@ -1,22 +1,22 @@
-﻿using System;
-using System.IO;
-using System.Xml.Schema;
-using RustyDragonBasesAndInterfaces.Exceptions;
+﻿using RustyDragonBasesAndInterfaces.Exceptions;
 using RustyDragonBasesAndInterfaces.Helper;
 using RustyDragonInn.BusinessLogics;
 using RustyDragonInn.Validators;
+using System;
+using System.IO;
+using System.Xml.Schema;
 
 namespace RustyDragonInn.Main
 {
     /// <summary>
     /// Author Masoud Zehtabi Oskuie 2/18/2016 , designed and implemented for Print Audit.
     /// </summary>
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var printer = new Printer.Printer();
-            if (args.Length==0)
+            if (args.Length == 0)
             {
                 printer.PrintLine("No input file path was specified.");
                 Console.Read();
@@ -33,7 +33,6 @@ namespace RustyDragonInn.Main
                     "This application has been designed and implemented by Masoud ZehtabiOskuie as an assessment for Senior C# Developer role");
                 var currentDate = Helper.GetDateTime('_', filePath, 1);
 
-
                 var cheeseValidator = new CheeseValidator();
                 var priceCalculationRulesContainer = new PriceCalculationRulesContainer();
                 var priceResolversContainer = new PriceResolversContainer();
@@ -41,7 +40,7 @@ namespace RustyDragonInn.Main
                     priceResolversContainer);
 
                 var daysManager = new DaysManager(3000, currentDate);
-                var storeManager = new StoreManager(priceCalculator, printer, daysManager) {Cheeses = cheeseList};
+                var storeManager = new StoreManager(priceCalculator, printer, daysManager) { Cheeses = cheeseList };
                 storeManager.OpenStore();
             }
             catch (FileNotFoundException)

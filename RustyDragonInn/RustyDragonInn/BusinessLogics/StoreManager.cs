@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using RustyDragonBasesAndInterfaces.BusinessLogics;
+﻿using RustyDragonBasesAndInterfaces.BusinessLogics;
 using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonBasesAndInterfaces.Printer;
+using System;
+using System.Collections.Generic;
 
 namespace RustyDragonInn.BusinessLogics
 {
@@ -22,7 +22,7 @@ namespace RustyDragonInn.BusinessLogics
         private readonly IDaysManager _daysManager;
         private const int Duration = 7;
 
-        public StoreManager(IPriceCalculator priceCalculator, 
+        public StoreManager(IPriceCalculator priceCalculator,
                             IPrinter printer,
                             IDaysManager daysManager)
         {
@@ -34,7 +34,7 @@ namespace RustyDragonInn.BusinessLogics
 
         private void DaysManager_OnNextDay(object sender, DaysManagerEventArgs e)
         {
-           _printer.PrintLine($"Day Number: {e.DayNumber}");
+            _printer.PrintLine($"Day Number: {e.DayNumber}");
             CalculatePrices(e.Now);
             if (e.DayNumber > Duration)
             {
@@ -47,7 +47,7 @@ namespace RustyDragonInn.BusinessLogics
             foreach (var cheese in Cheeses)
             {
                 DecrementDaysToSell(cheese);
-                _priceCalculator.CalculatePrice(cheese,now);
+                _priceCalculator.CalculatePrice(cheese, now);
             }
             _printer.Print(Cheeses, now);
         }
@@ -64,7 +64,6 @@ namespace RustyDragonInn.BusinessLogics
         {
             _daysManager.Stop();
             _printer.PrintLine("The store is now closed....Thank you for your shopping.");
-
         }
 
         private void DecrementDaysToSell(ICheese cheese)

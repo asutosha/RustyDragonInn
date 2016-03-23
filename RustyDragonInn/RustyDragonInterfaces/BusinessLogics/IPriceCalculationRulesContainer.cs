@@ -1,5 +1,5 @@
-﻿using System;
-using RustyDragonBasesAndInterfaces.Models;
+﻿using RustyDragonBasesAndInterfaces.Models;
+using System;
 
 namespace RustyDragonBasesAndInterfaces.BusinessLogics
 {

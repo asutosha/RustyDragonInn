@@ -1,13 +1,13 @@
-﻿using System;
+﻿using RustyDragonBasesAndInterfaces.Helper;
+using RustyDragonBasesAndInterfaces.Models;
+using RustyDragonBasesAndInterfaces.Reader;
+using RustyDragonInn.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using RustyDragonBasesAndInterfaces.Helper;
-using RustyDragonBasesAndInterfaces.Models;
-using RustyDragonBasesAndInterfaces.Reader;
-using RustyDragonInn.Models;
 
 namespace RustyDragonInn.Reader
 {
@@ -26,13 +26,13 @@ namespace RustyDragonInn.Reader
             var xmlDoc = XDocument.Load(filePath);
             if (xmlDoc.Root == null)
             {
-               throw new XmlSchemaException("The xml does not have any root");
+                throw new XmlSchemaException("The xml does not have any root");
             }
 
             var cheeseList = (from item in xmlDoc.Root.Elements("Item")
                               let itemName = item.Element("Name")
                               let itemPrice = item.Element("Price")
-                              let itemDaysToSell=item.Element("DaysToSell")
+                              let itemDaysToSell = item.Element("DaysToSell")
                               let itemBestBeforeDate = item.Element("BestBeforeDate")
                               let itemType = item.Element("Type")
                               where itemPrice != null && itemName != null
@@ -40,17 +40,14 @@ namespace RustyDragonInn.Reader
                               {
                                   Name = itemName.Value,
                                   Price = double.Parse(itemPrice.Value),
-                                  DaysToSell = itemDaysToSell.Value.Trim().Equals(string.Empty)?default(int?):
+                                  DaysToSell = itemDaysToSell.Value.Trim().Equals(string.Empty) ? default(int?) :
                                                 Convert.ToInt32(itemDaysToSell.Value),
-                                  BestBeforeDate = itemBestBeforeDate.Value.Trim().Equals(string.Empty)?
-                                                    default(DateTime?): Convert.ToDateTime(itemBestBeforeDate.Value),
+                                  BestBeforeDate = itemBestBeforeDate.Value.Trim().Equals(string.Empty) ?
+                                                    default(DateTime?) : Convert.ToDateTime(itemBestBeforeDate.Value),
                                   Type = Helper.CheeseTypeMapper(itemType.Value),
-
                               }).ToList<ICheese>();
 
             return cheeseList;
         }
-
-        
     }
 }

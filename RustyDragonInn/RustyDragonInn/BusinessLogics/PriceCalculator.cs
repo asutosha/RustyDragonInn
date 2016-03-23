@@ -1,7 +1,7 @@
-﻿using System;
-using RustyDragonBasesAndInterfaces.BusinessLogics;
+﻿using RustyDragonBasesAndInterfaces.BusinessLogics;
 using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonBasesAndInterfaces.Validators;
+using System;
 
 namespace RustyDragonInn.BusinessLogics
 {
@@ -29,7 +29,7 @@ namespace RustyDragonInn.BusinessLogics
 
         public void CalculatePrice(ICheese cheese, DateTime now)
         {
-            var clonedCheese = (ICheese) cheese.Clone();
+            var clonedCheese = (ICheese)cheese.Clone();
             var priceRule = _priceRuleContainer.GetRule(clonedCheese.Type);
             priceRule.Invoke(clonedCheese, now);
             var validationResult = clonedCheese.Validate(_cheeseValidator);

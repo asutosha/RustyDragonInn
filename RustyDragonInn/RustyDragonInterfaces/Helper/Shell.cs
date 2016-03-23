@@ -16,8 +16,8 @@ namespace RustyDragonBasesAndInterfaces.Helper
         private string _columnHeaders;
         private int _longestLine;
         private string[] _headerColumns;
-        public IList<object> Columns { get;set; }
-        public IList<object[]> Rows { get;set; }
+        public IList<object> Columns { get; set; }
+        public IList<object[]> Rows { get; set; }
 
         public Shell(params string[] columns)
         {
@@ -56,19 +56,19 @@ namespace RustyDragonBasesAndInterfaces.Helper
             shell.AddColumn(columns);
 
             foreach (var propertyValues in values.Select(value => columns.Select(column => typeof(T).GetProperty(column).GetValue(value, null))))
-               shell.AddRow(propertyValues.ToArray());
+                shell.AddRow(propertyValues.ToArray());
 
             return shell;
         }
 
         private static object[] ToShort(object[] values)
         {
-            var shortenValues =new object[values.Length];
+            var shortenValues = new object[values.Length];
             foreach (var value in values)
             {
                 DateTime result;
-                var isDateTime = DateTime.TryParse(value?.ToString().Replace(".",""), out result);
-                var newValue= isDateTime ? result.ToShortDateString() : value?.ToString().Trim();
+                var isDateTime = DateTime.TryParse(value?.ToString().Replace(".", ""), out result);
+                var newValue = isDateTime ? result.ToShortDateString() : value?.ToString().Trim();
                 var index = Array.IndexOf(values, value);
                 shortenValues[index] = newValue;
             }
@@ -77,7 +77,7 @@ namespace RustyDragonBasesAndInterfaces.Helper
 
         public Shell AddHeader(string[] headerColumns)
         {
-            _headerColumns = (string[]) headerColumns.Clone();
+            _headerColumns = (string[])headerColumns.Clone();
             return this;
         }
 
@@ -89,19 +89,19 @@ namespace RustyDragonBasesAndInterfaces.Helper
             }
             var builder = new StringBuilder();
             // create the divider
-            var spliter = " " + string.Join("", Enumerable.Repeat("-", _longestLine - 1)) + " "+ Environment.NewLine;
+            var spliter = " " + string.Join("", Enumerable.Repeat("-", _longestLine - 1)) + " " + Environment.NewLine;
             builder.Append(spliter);
             builder.Append("|");
             for (var i = 0; i < _headerColumns.Length; i += 2)
             {
                 var spaceString = string.Join("",
-                    Enumerable.Repeat(" ", i*Convert.ToInt32((_longestLine - 1)/_headerColumns.Length)))+" ";
-                                  
+                    Enumerable.Repeat(" ", i * Convert.ToInt32((_longestLine - 1) / _headerColumns.Length))) + " ";
+
                 builder.Append(spaceString);
                 var tempString = $"{_headerColumns[i]}:{_headerColumns[i + 1]}";
                 builder.Append(tempString);
             }
-            builder.Append("|"+ Environment.NewLine);
+            builder.Append("|" + Environment.NewLine);
             return builder.ToString();
         }
 
@@ -116,9 +116,9 @@ namespace RustyDragonBasesAndInterfaces.Helper
                     .ToList();
 
             // create the string format with padding
-             _format = Enumerable.Range(0, Columns.Count)
-                .Select(i => " | {" + i + ", -" + _columnLengths[i] + " }")
-                .Aggregate((s, a) => s + a) + " |";
+            _format = Enumerable.Range(0, Columns.Count)
+               .Select(i => " | {" + i + ", -" + _columnLengths[i] + " }")
+               .Aggregate((s, a) => s + a) + " |";
 
             // find the longest formatted line
             _maxRowLength = Math.Max(0, Rows.Any() ? Rows.Max(row => string.Format(_format, row).Length) : 0);
@@ -151,7 +151,7 @@ namespace RustyDragonBasesAndInterfaces.Helper
 
             builder.AppendLine(spliter);
             builder.AppendLine("");
-           // builder.AppendFormat(" Count: {0}", Rows.Count);
+            // builder.AppendFormat(" Count: {0}", Rows.Count);
 
             return builder.ToString();
         }
@@ -159,7 +159,7 @@ namespace RustyDragonBasesAndInterfaces.Helper
         public void Write()
         {
             Calculations();
-            var header=DrawHeader();
+            var header = DrawHeader();
             var body = ToString();
             Console.WriteLine(header + body);
         }
