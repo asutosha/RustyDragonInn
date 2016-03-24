@@ -61,7 +61,6 @@ namespace RustyDragonTests
             var daysManager = Substitute.For<DaysManager>(Interval, _now);
             daysManager.Start();
             daysManager.Received().Start();
-            daysManager.Dispose();
         }
 
         [TestCleanup]
