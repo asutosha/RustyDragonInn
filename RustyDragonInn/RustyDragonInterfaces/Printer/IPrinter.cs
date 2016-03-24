@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RustyDragonBasesAndInterfaces.Models;
+using System;
 using System.Collections.Generic;
-using RustyDragonBasesAndInterfaces.Models;
 
 namespace RustyDragonBasesAndInterfaces.Printer
 {

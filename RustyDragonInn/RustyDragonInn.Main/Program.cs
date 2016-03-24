@@ -1,12 +1,12 @@
 ﻿using RustyDragonBasesAndInterfaces.Exceptions;
 using RustyDragonBasesAndInterfaces.Helper;
+using RustyDragonBasesAndInterfaces.Models;
 using RustyDragonInn.BusinessLogics;
 using RustyDragonInn.Validators;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Schema;
-using RustyDragonBasesAndInterfaces.Models;
 
 namespace RustyDragonInn.Main
 {
@@ -42,7 +42,7 @@ namespace RustyDragonInn.Main
                     priceResolversContainer);
 
                 var daysManager = new DaysManager(3000, currentDate);
-                var storeManager = new StoreManager(priceCalculator, printer, daysManager) { Cheeses = (List<ICheese>) cheeseList };
+                var storeManager = new StoreManager(priceCalculator, printer, daysManager) { Cheeses = (List<ICheese>)cheeseList };
                 storeManager.OpenStore();
             }
             catch (FileNotFoundException)
